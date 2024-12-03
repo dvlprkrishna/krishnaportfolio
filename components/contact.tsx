@@ -7,15 +7,26 @@ import { useSectionInView } from "@/lib/hooks";
 import { sendEmail } from "@/actions/sendEmail";
 import SubmitBtn from "./submit-btn";
 import toast from "react-hot-toast";
+import { HiDownload, HiOutlineMail } from "react-icons/hi";
+import { BsLinkedin } from "react-icons/bs";
+import { FaGithubSquare } from "react-icons/fa";
 
 export default function Contact() {
   const { ref } = useSectionInView("Contact");
+
+  const copyEmail = () => {
+    const email = "fwdkrishna@gmail.com";
+    navigator.clipboard
+      .writeText(email)
+      .then(() => toast.success("Email copied to clipboard!"))
+      .catch((err) => toast.error(err));
+  };
 
   return (
     <motion.section
       id="contact"
       ref={ref}
-      className="mb-20 sm:mb-28 w-[min(100%,38rem)] text-center"
+      className="mb-20 w-[min(100%,38rem)] text-center sm:mb-28"
       initial={{
         opacity: 0,
       }}
@@ -31,15 +42,11 @@ export default function Contact() {
     >
       <SectionHeading>Contact me</SectionHeading>
 
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
-        <a className="underline" href="mailto:example@gmail.com">
-          example@gmail.com
-        </a>{" "}
-        or through this form.
+      <p className="-mt-6 text-gray-700 dark:text-white/80">
+        Feel free to connect with me on Linkedin / Email
       </p>
 
-      <form
+      {/* <form
         className="mt-10 flex flex-col dark:text-black"
         action={async (formData) => {
           const { data, error } = await sendEmail(formData);
@@ -53,7 +60,7 @@ export default function Contact() {
         }}
       >
         <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="borderBlack h-14 rounded-lg px-4 transition-all dark:bg-white dark:bg-opacity-80 dark:outline-none dark:focus:bg-opacity-100"
           name="senderEmail"
           type="email"
           required
@@ -61,14 +68,39 @@ export default function Contact() {
           placeholder="Your email"
         />
         <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
+          className="borderBlack my-3 h-52 rounded-lg p-4 transition-all dark:bg-white dark:bg-opacity-80 dark:outline-none dark:focus:bg-opacity-100"
           name="message"
           placeholder="Your message"
           required
           maxLength={5000}
         />
         <SubmitBtn />
-      </form>
+      </form> */}
+
+      <motion.div
+        className="mt-5 flex flex-col items-center justify-center gap-2 px-4 text-lg font-medium sm:flex-row"
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.1,
+        }}
+      >
+        <button
+          className="borderBlack group flex cursor-pointer items-center gap-2 rounded-full bg-white px-7 py-3 text-gray-700 outline-none transition hover:scale-110 focus:scale-110 active:scale-105 dark:bg-white/10"
+          onClick={copyEmail}
+        >
+          {/* <HiOutlineMail className="opacity-60 transition group-hover:translate-y-1" /> */}
+          Fwdkrishna@gmail.com{" "}
+        </button>
+
+        <a
+          className="borderBlack flex cursor-pointer items-center gap-2 rounded-full bg-white p-4 text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
+          href="https://linkedin.com/in/Technical-lead-ui-ux"
+          target="_blank"
+        >
+          <BsLinkedin /> / Technical-lead-UI-UX
+        </a>
+      </motion.div>
     </motion.section>
   );
 }
