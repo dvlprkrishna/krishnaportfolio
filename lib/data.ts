@@ -81,22 +81,6 @@ export const projectsData = [
 ] as const;
 
 export const skillsData = [
-  // "Next.js",
-  // "React.js",
-  // "JavaScript",
-  // "HTML5",
-  // "CSS3",
-  // "Tailwind",
-  // "Bootstrap",
-  // "Sass",
-  // "Git",
-  // "AWS",
-  // "CI/CD",
-  // "Figma",
-  // "Canva",
-  // "Framer Motion",
-  // "Adobe XD",
-
   "React.js",
   "Next.js",
   "HTML5",
