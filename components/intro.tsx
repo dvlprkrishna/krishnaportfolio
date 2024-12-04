@@ -95,21 +95,23 @@ export default function Intro() {
           <HiDownload className="opacity-60 transition group-hover:translate-y-1" />
         </a>
 
-        <a
-          className="borderBlack flex cursor-pointer items-center gap-2 rounded-full bg-white p-4 text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
-          href="https://linkedin.com/in/Technical-lead-ui-ux"
-          target="_blank"
-        >
-          <BsLinkedin />
-        </a>
+        <div className="flex cursor-pointer items-center gap-2 px-2 py-2 outline-none transition">
+          <a
+            className="borderBlack flex cursor-pointer items-center gap-2 rounded-full bg-white p-4 text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
+            href="https://linkedin.com/in/Technical-lead-ui-ux"
+            target="_blank"
+          >
+            <BsLinkedin />
+          </a>
 
-        <a
-          className="borderBlack flex cursor-pointer items-center gap-2 rounded-full bg-white p-4 text-[1.35rem] text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
-          href="https://github.com/dvlprkrishna"
-          target="_blank"
-        >
-          <FaGithubSquare />
-        </a>
+          <a
+            className="borderBlack flex cursor-pointer items-center gap-2 rounded-full bg-white p-4 text-[1.35rem] text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
+            href="https://github.com/dvlprkrishna"
+            target="_blank"
+          >
+            <FaGithubSquare />
+          </a>
+        </div>
       </motion.div>
     </section>
   );
