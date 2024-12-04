@@ -17,8 +17,8 @@ export default function Intro() {
   const { theme } = useTheme();
   const imageSrc =
     theme === "dark"
-      ? "/Krishna-Sahu-Profile-Picture-Dark.jpg" // Dark mode image
-      : "/Krishna-Sahu-Profile-Picture.jpg"; // Light mode image
+      ? "/Krishna-Sahu-Profile-Picture-Dark.jpg" // Dark mode
+      : "/Krishna-Sahu-Profile-Picture.jpg"; // Light mode
 
   return (
     <section
