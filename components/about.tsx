@@ -19,7 +19,7 @@ export default function About() {
     >
       <SectionHeading>About me</SectionHeading>
       <p className="mb-3">
-        With over 7+ years of experience, I specialize in development of
+        With over 8+ years of experience, I specialize in development of
         scalable, user-friendly web applications. I bring expertise in leading
         teams, and ensuring smooth execution of projects. My focus is on
         delivering high-quality UI/UX solutions that are efficient, robust to

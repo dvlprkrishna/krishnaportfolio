@@ -15,7 +15,7 @@ export default function Contact() {
   const { ref } = useSectionInView("Contact");
 
   const copyEmail = () => {
-    const email = "fwdkrishna@gmail.com";
+    const email = "krishnsahu.pm@gmail.com";
     navigator.clipboard
       .writeText(email)
       .then(() => toast.success("Email copied to clipboard!"))
@@ -90,15 +90,15 @@ export default function Contact() {
           onClick={copyEmail}
         >
           {/* <HiOutlineMail className="opacity-60 transition group-hover:translate-y-1" /> */}
-          Fwdkrishna@gmail.com{" "}
+          Krishnasahu.pm@gmail.com{" "}
         </button>
 
         <a
           className="borderBlack flex cursor-pointer items-center gap-2 rounded-full bg-white p-4 text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
-          href="https://linkedin.com/in/Technical-lead-ui-ux"
+          href="https://linkedin.com/in/Krishna-TPM"
           target="_blank"
         >
-          <BsLinkedin /> / Technical-lead-UI-UX
+          <BsLinkedin /> / Krishna-TPM
         </a>
       </motion.div>
     </motion.section>

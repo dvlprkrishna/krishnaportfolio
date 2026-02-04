@@ -73,7 +73,7 @@ export default function Intro() {
         </span>{" "}
         <br />
         I'm a <span className="font-bold">Technical Lead</span> having{" "}
-        <span className="font-bold">7+ years</span> of experience providing Web
+        <span className="font-bold">8+ years</span> of experience providing Web
         Development and UI/UX solutions.
         {/* <span className="underline">Next.js, React, UI UX</span>. */}
       </motion.h1>
@@ -98,7 +98,7 @@ export default function Intro() {
         <div className="flex cursor-pointer items-center gap-2 px-2 py-2 outline-none transition">
           <a
             className="borderBlack flex cursor-pointer items-center gap-2 rounded-full bg-white p-4 text-gray-700 transition hover:scale-[1.15] hover:text-gray-950 focus:scale-[1.15] active:scale-105 dark:bg-white/10 dark:text-white/60"
-            href="https://linkedin.com/in/Technical-lead-ui-ux"
+            href="https://linkedin.com/in/krishna-tpm"
             target="_blank"
           >
             <BsLinkedin />

@@ -91,12 +91,12 @@ export const skillsData = [
   "Bootstrap",
   "Figma",
   "Adobe XD",
-  "Canva",
   "JIRA",
   "AWS (S3)",
   "Git",
   "CI/CD (GitHub Actions)",
   "Web Development",
   "UI UX",
+  "Technical Project Management",
   "Team Management",
 ] as const;
