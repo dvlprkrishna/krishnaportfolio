@@ -16,12 +16,6 @@ const SUGGESTED_QUESTIONS = [
   "Are you open to work?",
 ];
 
-// UTM-tagged links
-// const UTM = "?utm_source=krishnasahu.in&utm_medium=chatbot&utm_campaign=portfolio";
-const LINKEDIN_URL = `https://linkedin.com/in/krishna-tpm`;
-const DVLPR_URL = `https://dvlprstudio.com`;
-const RESUME_URL = `/Krishna_Sahu_Tech_Lead_Resume.pdf`;
-
 function MessageContent({ content }: { content: string }) {
   // Replace plain URLs with clickable links
   const urlRegex =
@@ -43,17 +37,10 @@ function MessageContent({ content }: { content: string }) {
     }
     const raw = match[0];
     const href = raw.startsWith("http") ? raw : `https://${raw}`;
-    // Add UTM if it's an external link we control
-    const finalHref =
-      href.includes("dvlprstudio.com") ||
-      href.includes("krishnasahu.in") ||
-      href.includes("linkedin.com/in/krishna")
-        ? `${href}${href.includes("?") ? "&" : "?"}utm_source=krishnasahu.in&utm_medium=chatbot&utm_campaign=portfolio`
-        : href;
     elements.push(
       <a
         key={match.index}
-        href={finalHref}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="break-all font-medium underline underline-offset-2 opacity-90 hover:opacity-100"
@@ -193,6 +180,18 @@ export default function ChatBot() {
     }
   }, [messages, isOpen]);
 
+  // Keyboard shortcut: Ctrl+Shift+I to toggle chat
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") {
+        e.preventDefault();
+        setIsOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
+
   const sendMessage = async (text: string) => {
     if (!text.trim() || isLoading) return;
     const userMessage: Message = { role: "user", content: text.trim() };
@@ -244,16 +243,28 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Floating Button — group for look-around animation trigger */}
-      <motion.button
-        onClick={() => setIsOpen((prev) => !prev)}
-        className="group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-gray-700 bg-gray-900 text-white shadow-2xl dark:border-gray-200 dark:bg-white dark:text-gray-900"
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.93 }}
-        aria-label="Open chat"
-      >
-        <ClaudeGhostIcon isOpen={isOpen} />
-      </motion.button>
+      {/* Floating Button — transparent, tooltip on hover, keyboard shortcut */}
+      <div className="group/btn fixed bottom-6 right-6 z-[999] flex flex-col items-end gap-1.5">
+        {/* Tooltip — only visible on button hover, hidden when chat is open */}
+        {!isOpen && (
+          <div className="pointer-events-none flex translate-y-1 items-center gap-2 whitespace-nowrap rounded-lg bg-[#1f1e1d] px-3 py-1.5 text-xs text-white opacity-0 shadow-lg transition-all duration-150 group-hover/btn:translate-y-0 group-hover/btn:opacity-100">
+            Chat with Krishna&apos;s AI
+            <kbd className="rounded bg-white/20 px-1.5 py-0.5 font-mono text-[10px] text-white">
+              Ctrl+⇧+I
+            </kbd>
+          </div>
+        )}
+        <motion.button
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="group flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black/5"
+          style={{ color: "#1f1e1d" }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.93 }}
+          aria-label="Chat with Krishna AI"
+        >
+          <ClaudeGhostIcon isOpen={isOpen} />
+        </motion.button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -399,7 +410,7 @@ export default function ChatBot() {
                 </button>
               </div>
               <p className="mt-2 text-center text-[10px] text-gray-400">
-                Powered by{" "}
+                Made by{" "}
                 <Link
                   href="https://dvlprstudio.com"
                   target="_blank"
