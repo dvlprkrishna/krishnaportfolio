@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 interface Message {
   role: "user" | "assistant";
@@ -171,6 +172,7 @@ export default function ChatBot() {
   const sessionId = useRef<string>(
     Math.random().toString(36).slice(2) + Date.now().toString(36),
   );
+  const usedSuggestion = useRef<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -209,6 +211,10 @@ export default function ChatBot() {
         body: JSON.stringify({
           messages: updatedMessages,
           sessionId: sessionId.current,
+          messageCount: updatedMessages.filter(
+            (m: { role: string }) => m.role === "user",
+          ).length,
+          usedSuggestion: usedSuggestion.current,
         }),
       });
       const data = await res.json();
@@ -263,10 +269,7 @@ export default function ChatBot() {
         <motion.button
           onClick={() => setIsOpen((prev) => !prev)}
           className="group flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black/5"
-          style={{
-            color: "#1f1e1d",
-            background: "rgb(249 250 251 / var(--tw-bg-opacity))",
-          }}
+          style={{ color: "#1f1e1d" }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.93 }}
           aria-label="Chat with Krishna AI"
@@ -294,7 +297,7 @@ export default function ChatBot() {
             {/* Header */}
             <div className="flex shrink-0 items-center gap-3 border-b border-black/10 bg-gray-50 px-5 py-3">
               <div className="relative">
-                <div className="flex h-9 w-9 select-none items-center justify-center rounded-full bg-gray-900 text-center align-middle text-sm font-bold text-white">
+                <div className="flex h-9 w-9 select-none items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white">
                   KS
                 </div>
                 <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-gray-50 bg-green-400" />
@@ -350,7 +353,10 @@ export default function ChatBot() {
                   {SUGGESTED_QUESTIONS.map((q) => (
                     <button
                       key={q}
-                      onClick={() => sendMessage(q)}
+                      onClick={() => {
+                        usedSuggestion.current = true;
+                        sendMessage(q);
+                      }}
                       className="rounded-xl border border-gray-200 px-3 py-2 text-left text-xs text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
                     >
                       {q}
@@ -419,7 +425,11 @@ export default function ChatBot() {
                 </button>
               </div>
               <p className="mt-2 text-center text-[10px] text-gray-400">
-                Powered by Groq · Answers are AI-generated
+                Made by{" "}
+                <Link href="https://www.dvlprstudio.com" target="_blank">
+                  DvlprStudio
+                </Link>{" "}
+                · Answers are AI-generated
               </p>
             </div>
           </motion.div>
