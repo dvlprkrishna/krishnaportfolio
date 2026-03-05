@@ -7,6 +7,7 @@ import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 import ChatBot from "@/components/ChatBot";
+import ConsoleEgg from "@/components/ConsoleEgg";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +39,7 @@ export default function RootLayout({
             {children}
             <ChatBot />
             <Footer />
-
+            <ConsoleEgg />
             <Toaster position="bottom-right" />
             <ThemeSwitch />
           </ActiveSectionContextProvider>

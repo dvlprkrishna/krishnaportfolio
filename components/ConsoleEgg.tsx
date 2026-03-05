@@ -1,0 +1,33 @@
+"use client";
+import { useEffect } from "react";
+
+export default function ConsoleEgg() {
+  useEffect(() => {
+    const art = `
+██╗  ██╗██████╗ ██╗███████╗██╗  ██╗███╗   ██╗ █████╗
+██║ ██╔╝██╔══██╗██║██╔════╝██║  ██║████╗  ██║██╔══██╗
+█████╔╝ ██████╔╝██║███████╗███████║██╔██╗ ██║███████║
+██╔═██╗ ██╔══██╗██║╚════██║██╔══██║██║╚██╗██║██╔══██║
+██║  ██╗██║  ██║██║███████║██║  ██║██║ ╚████║██║  ██║
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
+
+ ███████╗ █████╗ ██╗  ██╗██╗   ██╗
+ ██╔════╝██╔══██╗██║  ██║██║   ██║
+ ███████╗███████║███████║██║   ██║
+ ╚════██║██╔══██║██╔══██║██║   ██║
+ ███████║██║  ██║██║  ██║╚██████╔╝
+ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ .in
+`;
+    console.clear();
+    console.log(
+      "%c" + art,
+      "color:#e07b39;font-family:monospace;font-size:11px;line-height:1.4",
+    );
+    console.log(
+      "%c  krishnasahu.in  ",
+      "background:#e07b39;color:#333;font-family:monospace;font-size:12px;font-weight:bold;padding:3px 8px;border-radius:3px",
+    );
+  }, []);
+
+  return null;
+}

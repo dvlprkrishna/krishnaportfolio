@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 
 interface Message {
   role: "user" | "assistant";
@@ -168,6 +167,10 @@ export default function ChatBot() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  // Unique session ID per page load — groups conversations in Supabase
+  const sessionId = useRef<string>(
+    Math.random().toString(36).slice(2) + Date.now().toString(36),
+  );
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -203,7 +206,10 @@ export default function ChatBot() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updatedMessages }),
+        body: JSON.stringify({
+          messages: updatedMessages,
+          sessionId: sessionId.current,
+        }),
       });
       const data = await res.json();
       setMessages((prev) => [
@@ -257,7 +263,10 @@ export default function ChatBot() {
         <motion.button
           onClick={() => setIsOpen((prev) => !prev)}
           className="group flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-black/5"
-          style={{ color: "#1f1e1d" }}
+          style={{
+            color: "#1f1e1d",
+            background: "rgb(249 250 251 / var(--tw-bg-opacity))",
+          }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.93 }}
           aria-label="Chat with Krishna AI"
@@ -279,29 +288,29 @@ export default function ChatBot() {
             }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="fixed bottom-24 right-4 z-[999] flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl dark:border-white/10 dark:bg-gray-950"
+            className="fixed bottom-24 right-4 z-[999] flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-white shadow-2xl"
             style={{ width: chatWidth, height: chatHeight }}
           >
             {/* Header */}
-            <div className="flex shrink-0 items-center gap-3 border-b border-black/10 bg-gray-50 px-5 py-3 dark:border-white/10 dark:bg-gray-900">
+            <div className="flex shrink-0 items-center gap-3 border-b border-black/10 bg-gray-50 px-5 py-3">
               <div className="relative">
-                <div className="flex h-9 w-9 select-none items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-white dark:bg-white dark:text-gray-900">
+                <div className="flex h-9 w-9 select-none items-center justify-center rounded-full bg-gray-900 text-center align-middle text-sm font-bold text-white">
                   KS
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-gray-50 bg-green-400 dark:border-gray-900" />
+                <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-gray-50 bg-green-400" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold leading-tight text-gray-900 dark:text-white">
+                <p className="text-sm font-semibold leading-tight text-gray-900">
                   Ask about Krishna
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-500">
                   AI-powered · Usually instant
                 </p>
               </div>
               {/* Expand toggle */}
               <button
                 onClick={() => setExpanded((e) => !e)}
-                className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                className="rounded-lg p-1.5 text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-600"
                 title={expanded ? "Collapse" : "Expand"}
               >
                 <ExpandIcon expanded={expanded} />
@@ -321,8 +330,8 @@ export default function ChatBot() {
                   <div
                     className={`${expanded ? "max-w-[80%]" : "max-w-[88%]"} rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                       msg.role === "user"
-                        ? "bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-br-sm"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-bl-sm"
+                        ? "bg-gray-900  text-white  rounded-br-sm"
+                        : "bg-gray-100  text-gray-800  rounded-bl-sm"
                     }`}
                   >
                     <MessageContent content={msg.content} />
@@ -342,7 +351,7 @@ export default function ChatBot() {
                     <button
                       key={q}
                       onClick={() => sendMessage(q)}
-                      className="rounded-xl border border-gray-200 px-3 py-2 text-left text-xs text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                      className="rounded-xl border border-gray-200 px-3 py-2 text-left text-xs text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
                     >
                       {q}
                     </button>
@@ -357,11 +366,11 @@ export default function ChatBot() {
                   animate={{ opacity: 1 }}
                   className="flex justify-start"
                 >
-                  <div className="flex items-center gap-1 rounded-2xl rounded-bl-sm bg-gray-100 px-4 py-3 dark:bg-gray-800">
+                  <div className="flex items-center gap-1 rounded-2xl rounded-bl-sm bg-gray-100 px-4 py-3">
                     {[0, 1, 2].map((i) => (
                       <motion.span
                         key={i}
-                        className="block h-1.5 w-1.5 rounded-full bg-gray-400 dark:bg-gray-500"
+                        className="block h-1.5 w-1.5 rounded-full bg-gray-400"
                         animate={{ opacity: [0.3, 1, 0.3] }}
                         transition={{
                           repeat: Infinity,
@@ -377,8 +386,8 @@ export default function ChatBot() {
             </div>
 
             {/* Input */}
-            <div className="shrink-0 border-t border-black/10 bg-gray-50 px-5 py-3.5 dark:border-white/10 dark:bg-gray-900">
-              <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 dark:border-gray-700 dark:bg-gray-800">
+            <div className="shrink-0 border-t border-black/10 bg-gray-50 px-5 py-3.5">
+              <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5">
                 <input
                   ref={inputRef}
                   type="text"
@@ -387,15 +396,15 @@ export default function ChatBot() {
                   onKeyDown={handleKeyDown}
                   placeholder="Ask me anything..."
                   disabled={isLoading}
-                  className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none disabled:opacity-50 dark:text-white"
+                  className="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none disabled:opacity-50"
                 />
                 <button
                   onClick={() => sendMessage(input)}
                   disabled={!input.trim() || isLoading}
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gray-900 transition-opacity hover:opacity-80 disabled:opacity-30 dark:bg-white"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gray-900 transition-opacity hover:opacity-80 disabled:opacity-30"
                 >
                   <svg
-                    className="h-3.5 w-3.5 text-white dark:text-gray-900"
+                    className="h-3.5 w-3.5 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -410,15 +419,7 @@ export default function ChatBot() {
                 </button>
               </div>
               <p className="mt-2 text-center text-[10px] text-gray-400">
-                Made by{" "}
-                <Link
-                  href="https://dvlprstudio.com"
-                  target="_blank"
-                  className=""
-                >
-                  DvlprStudio
-                </Link>{" "}
-                · Answers are AI-generated
+                Powered by Groq · Answers are AI-generated
               </p>
             </div>
           </motion.div>
