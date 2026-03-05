@@ -1,0 +1,74 @@
+KRISHNA SAHU
+Email: krishnasahu.pm@gmail.com | Phone: +91 7304219348
+LinkedIn: linkedin.com/in/krishna-tpm | Website: krishnasahu.in
+
+SUMMARY
+Technical Project Manager with 8+ years of experience delivering enterprise and product web platforms end-to-end. Strong background in frontend engineering, platform modernization, CI/CD, and automation. Proven ownership of delivery planning, stakeholder management, risk mitigation, and execution. Experienced in leading cross-functional teams, modernizing legacy systems, and driving efficiency through tooling and process improvements. Currently open to new opportunities as a Technical Project Manager.
+
+SKILLS
+Program Management: Technical Project Management, Agile/Scrum/Kanban, Delivery Planning & Estimation, Stakeholder & Expectation Management, Risk & Dependency Management, Cross-functional Team Leadership
+Frontend: JavaScript, TypeScript, React.js, Next.js, HTML5, CSS3, Tailwind CSS, Sass, Bootstrap
+Tools & DevOps: GitHub Actions (CI/CD), AWS (S3), JIRA, Git, Workfront
+Design: Figma, Adobe XD, Canva
+Creative/3D: Three.js, GSAP, Spline
+
+EXPERIENCE
+
+Tech Lead / Technical SME — Accenture (Aug 2024 – Present)
+- Act as technical SME supporting delivery and deployment of multiple web initiatives under tight timelines
+- Partner with project managers and engineers to resolve delivery risks and unblock execution issues
+- Mentor team members on React.js, Next.js, deployment workflows, and quality standards
+- Contribute to automation and process improvement initiatives to reduce manual effort
+
+Technical Delivery Lead — Godrej Infotech (June 2023 – June 2024)
+- Owned end-to-end technical delivery of a large-scale corporate website revamp
+- Led migration from legacy PHP/Bootstrap to a modern Next.js frontend architecture
+- Delivered functional MVP in 2 weeks, securing early buy-in from VP / Global Business Head
+- Coordinated a 7-member cross-functional team (design, content, backend, database)
+- Migrated hosting from on-premises to cloud and implemented CI/CD pipelines, improving load time by 25% in US Western and APAC regions
+- Introduced GSAP, Three.js, and Spline for animation-rich experiences
+- Achieved beta-ready platform within 6 months
+
+Full Stack Developer – React.js — Webstream Communications (Nov 2020 – Mar 2023)
+- Built web portals for pharmaceutical clients using React.js, Firebase, Bootstrap, and MySQL
+- Specialized in 3D perspective rendered live-event streaming websites
+
+Full Stack Developer – PHP — Viztar Infotech (Nov 2019 – Sept 2020)
+- Built a niche social media platform with posts, likes, follows, messaging, and token-based systems
+- Used PHP, Firebase authentication, and MySQL
+
+Web Developer – UI/UX — Accenture (Jan 2019 – Nov 2019)
+- Automated repetitive QA validation via a custom Chrome extension
+- Reduced validation effort by ~85% (from ~15 min/page to under 2 minutes)
+- Used JSON-driven rules and Regex-based parsing with CSV export for reporting
+- Received 3x Accenture Operation Excellence Awards
+
+Web Developer – Frontend — LionBridge Technologies (Feb 2018 – Jan 2019)
+- Maintained multilingual websites and built Regex-based patterns for content validation and localization
+
+PROJECTS
+
+Godrej Infotech Website Revamp
+- Led full technical delivery from architecture decisions to deployment
+- Managed stakeholder expectations, phased rollouts, and cross-team dependencies
+- Delivered a modern, scalable Next.js platform aligned with enterprise branding standards
+
+DvlprStudio — dvlprstudio.com (Indie Studio, Est. 2025, Mumbai)
+- Management Explained: Modern PM frameworks resource. Built with Next.js, live on Vercel.
+- SharkTank.rocks: Shark Tank India investment database — 700+ pitches, deals, founders. Built with React.
+- PM Pathfinder: Career roadmap tool for aspiring and senior product managers. Built with Next.js.
+- SetoPos: Smart POS & restaurant management platform (coming soon).
+
+Chrome QA Extension (Accenture)
+- Automated manual QA checks with JSON-driven rules and Regex parsing
+- Reduced effort by 85%, won 3 Accenture Operation Excellence Awards
+
+EDUCATION
+MBA – Artificial Intelligence (AI/ML) & Project Management — Dr. D.Y. Patil University, Pune (2025)
+BSc – Information Technology — Mumbai University (2015)
+Technical Project Manager Certification — ProductHQ (2026, In Progress)
+
+AVAILABILITY
+Actively looking for Technical Project Manager roles.
+Open to Mumbai-based or fully remote opportunities.
+Contact: krishnasahu.pm@gmail.com | LinkedIn: linkedin.com/in/krishna-tpm
